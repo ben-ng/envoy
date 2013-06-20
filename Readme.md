@@ -4,7 +4,7 @@ Fast, simple deployment of static sites.
 [![Build Status](https://travis-ci.org/ben-ng/envoy.png?branch=master)](https://travis-ci.org/ben-ng/envoy)
 
 ##Goals
- * **Correctness:** Deployed sites should be exactly as they are on the local filesystem.
+ * **Correctness:** Deployed sites should be exactly as they were on the local filesystem.
  * **Speedy:** Perform the bare minimum number of operations without compromising correctness.
  * **Simple:** One command should be all it takes to deploy to any service.
 
@@ -48,7 +48,39 @@ envoy.deployCollection(simpleWebsite, 'ftp', ftpOptions, afterDeploy);
 ```
 
 ##Low-Level Calls
-*Coming Soon*
+
+You can perform lower level calls with the adapters directly.
+
+```js
+  var client = new require('./lib/adapters/ftp')
+    , opts = {username:'donkey', password:'kong'};
+  
+  client.before(opts, function (err) {
+  
+    client.put('some_file.txt', new Buffer('Some Data'), function (err) {
+    
+      client.after( function (err) {
+        console.log("Done!");
+      } );
+      
+    });
+    
+  });
+```
+
+All adapters support three operations
+ * before
+ * put
+ * get
+ * destroy
+ * after
+
+Certain adapters like FTP will support more operations unique to their operation
+ * mkdir
+ * rmdir
+ * list
+
+Take a look at the tests for more.
 
 ##Notes
  * We leave a `.envoy` file in the remote directory to speed up future deploys. Make sure your FTP server is configured to show dotfiles.
@@ -60,3 +92,4 @@ You need a `tests/secrets.json` file to run integration tests on your own server
     * Ensure user has write permissions
     * Server should be configured to show .dotfiles
     * Server should not auto-rename uploaded files on conflict
+    * We are tested against pure-ftpd and vsftpd
