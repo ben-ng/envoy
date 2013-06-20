@@ -3,7 +3,7 @@ var assert = require('assert')
   , path = require('path')
   , tests = {}
   , envoy = require('../../lib/envoy')
-  , secrets = require('../secrets')
+  , secrets = require(path.join('../',process.env.SECRETS_FILE))
   , fixtures = require('../fixtures')
   , adapters = {
       memory: {}

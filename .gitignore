@@ -1,5 +1,4 @@
 secrets.json
-secrets.local.json
-secrets.production.json
+secrets.*.json
 .DS_Store
 node_modules

@@ -2,7 +2,7 @@ var assert = require('assert')
   , _ = require('underscore')
   , tests = []
   , envoy = require('../lib/envoy.js')
-  , secrets = require('./secrets')
+  , secrets = require(process.env.SECRETS_FILE)
   , fixtures = require('./fixtures')
   , adapters = ["memory", "ftp"]
   , undeployOpts

@@ -86,7 +86,7 @@ Take a look at the tests for more.
  * We leave a `.envoy` file in the remote directory to speed up future deploys. Make sure your FTP server is configured to show dotfiles.
 
 ##Testing
-You need a `tests/secrets.json` file to run integration tests on your own server. See `tests/secrets.example.json` for an example.
+You'll need a `tests/secrets.json` file to run the tests with `jake test`. See `tests/secrets.example.json` for an example `secrets.json` file. To test integration with different backends, you can have multiple secret files, name them `secrets.somestring.json` and run the tests with `jake testWith[somestring]`.
 
  * FTP
     * Ensure user has write permissions

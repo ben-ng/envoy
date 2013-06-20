@@ -16,3 +16,21 @@ var t = new jake.TestTask('envoy', function () {
   this.testFiles.exclude('tests/secrets.js');
   this.testFiles.exclude('tests/fixtures.js');
 });
+
+task('testWith', {async: true}, function (type) {
+  var init = jake.Task.test;
+  
+  if(!type) {
+    type = '';
+  }
+  else {
+    type = '.' + type
+  }
+  
+  process.env.SECRETS_FILE = './secrets'+type;
+  
+  init.addListener('complete', function () {
+    complete();
+  });
+  init.invoke();
+});
