@@ -7,6 +7,8 @@ var t = new jake.TestTask('envoy', function () {
     ]
   , fixtureDir = "./tests/fixtures/sites/1";
   
+  process.env.SECRETS_FILE = process.env.SECRETS_FILE || './secrets';
+  
   //Create empty test dir if needed
   if(!fs.existsSync(fixtureDir)) {
     fs.mkdirSync(fixtureDir);
