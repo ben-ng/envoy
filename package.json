@@ -1,0 +1,27 @@
+{
+  "author": "Ben Ng <me@benng.me> (http://benng.me)",
+  "name": "envoy",
+  "description": "Better Deployment with Node.js",
+  "keywords": [
+    "ftp",
+    "deployment"
+  ],
+  "version": "0.0.1",
+  "main": "./lib/envoy",
+  "dependencies": {
+    "jsftp": "0.6.x"
+  , "async": "0.2.x"
+  , "crypto": "0.0.x"
+  , "underscore": "1.4.x"
+  , "wrench": "1.5.1"
+  , "jake": "0.5.x"
+  },
+  "scripts": {
+    "test": "jake test"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">=0.8.x"
+  }
+}
