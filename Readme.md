@@ -4,9 +4,9 @@ Fast, simple deployment of static sites.
 [![Build Status](https://travis-ci.org/ben-ng/envoy.png?branch=master)](https://travis-ci.org/ben-ng/envoy)
 
 ##Goals
- * **Correctness:** Deployed sites should be exactly as they were on the local filesystem.
- * **Speedy:** Perform the bare minimum number of operations without compromising correctness.
- * **Simple:** One command should be all it takes to deploy to any service.
+ * **Correctness:** Deployed sites *have* to be perfect, every time. Test, test, test, and test some more.
+ * **Speed:** Perform the bare minimum number of operations without compromising correctness.
+ * **Simplicity:** One command should be all it takes to deploy to any service, and it should Just Work&trade;.
 
 ##Supported Services
  * FTP
