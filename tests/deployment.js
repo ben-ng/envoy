@@ -20,6 +20,39 @@ _.extend(opts.ftp, {baseDir:'./tests'});
 
 _.each(adapters, function (adapterName) {
   
+  tests[adapterName + ' deploy/undeploy empty collection'] = function (next) {
+    envoy.deployCollection({}, adapterName, opts[adapterName], function (err, log, hashes) {
+      assert.equal(err, null, err);
+      assert.deepEqual(log,['Adapter Opened','GET tests/.envoy','PUT tests/.envoy','Adapter Closed']);
+      
+      //Reverse the deployment to delete the site
+      envoy.undeploy(adapterName, opts[adapterName], function (err, log) {
+        assert.equal(err, null, err);
+        
+        assert.deepEqual(log,['Adapter Opened','GET tests/.envoy','PUT tests/.envoy','Adapter Closed']);
+        
+        next();
+      });
+    });
+  };
+  
+  tests[adapterName + ' deploy/undeploy simple collection'] = function (next) {
+    
+    envoy.deployCollection(fixtures.collectionSite, adapterName, opts[adapterName], function (err, log, hashes) {
+      assert.equal(err, null, err);
+      assert.deepEqual(log,['Adapter Opened','GET tests/.envoy','PUT tests/.envoy',"PUT tests/siteroot/index.html",'Adapter Closed']);
+      
+      //Reverse the deployment to delete the site
+      envoy.undeploy(adapterName, opts[adapterName], function (err, log) {
+        assert.equal(err, null, err);
+        
+        assert.deepEqual(log,['Adapter Opened','GET tests/.envoy','PUT tests/.envoy',"DEL tests/siteroot/index.html",'Adapter Closed']);
+        
+        next();
+      });
+    });
+  };
+  
   tests[adapterName + ' deploy/undeploy empty folder'] = function (next) {
     envoy.deployFolder(fixtures.siteOne, adapterName, opts[adapterName], function (err, log, hashes) {
       assert.equal(err, null, err);

@@ -18,14 +18,16 @@ var fixtures = {
   , "fileFive"            : {key:".dotfile/query.txt",data:"f"}
   , "fileFiveDiff"        : {".dotfile/query.txt":"4a0a19218e082a343a1b17e5333409af9d98f0f5"}
   // A dotfile in a directory
-  , "fileSix"            : {key:"test/.dotfile",data:"f"}
-  , "fileSixDiff"        : {"test/.dotfile":"4a0a19218e082a343a1b17e5333409af9d98f0f5"}
+  , "fileSix"             : {key:"test/.dotfile",data:"f"}
+  , "fileSixDiff"         : {"test/.dotfile":"4a0a19218e082a343a1b17e5333409af9d98f0f5"}
   // A website with no files
   , "siteOne"             : "./tests/fixtures/sites/1"
   // A simple website with one text file and one image
   , "siteTwo"             : "./tests/fixtures/sites/2"
   // A simple website with one file in a subdirectory
   , "siteThree"           : "./tests/fixtures/sites/3"
+  // A simple website as a collection
+  , "collectionSite"      : {'siteroot/index.html': (new Buffer("<h1>It Worked!</h1>"))}
 };
   
 module.exports = fixtures;
