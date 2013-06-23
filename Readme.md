@@ -4,13 +4,13 @@ Fast, simple deployment of static sites.
 [![Build Status](https://travis-ci.org/ben-ng/envoy.png?branch=master)](https://travis-ci.org/ben-ng/envoy)
 
 ##Goals
- * **Correctness:** Deployed sites *have* to be perfect, every time. Test, test, test, and test some more.
+ * **Correctness:** Deployed sites *have* to be perfect, every time.
  * **Speed:** Perform the bare minimum number of operations without compromising correctness.
  * **Simplicity:** One command should be all it takes to deploy to any service, and it should Just Work&trade;.
 
 ##Supported Services
+ * S3
  * FTP
- * S3 *(Soon...)*
  * Github Pages *(Soon...)*
 
 ##High-Level Calls
@@ -21,6 +21,12 @@ var envoy=require('envoy')
       username: 'Fluffy'
     , password: 'McChubbers'
     , host:     'ftp.cheeseburger.com'
+    }
+  , s3Options = {
+      "bucket": "<BUCKET NAME>"
+    , "key": "<AWS ACCESS KEY>"
+    , "secret": "<AWS SECRET KEY>"
+    , "region": "<AWS REGION>"      //us-west-1
     }
   , simpleWebsite = {
       "index.html": '<h1>Welcome, Humans!</h1>'
@@ -39,8 +45,8 @@ var envoy=require('envoy')
     }
   };
 
-// Deploying a local folder to FTP
-envoy.deployFolder('./my-website-folder', 'ftp', ftpOptions, afterDeploy);
+// Deploying a local folder to S3
+envoy.deployFolder('./my-website-folder', 's3', s3Options, afterDeploy);
 
 // Deploying a collection of files to FTP
 envoy.deployCollection(simpleWebsite, 'ftp', ftpOptions, afterDeploy);
