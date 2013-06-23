@@ -11,6 +11,15 @@ before_install:
   - sudo /usr/sbin/pure-ftpd -jl puredb:/etc/pure-ftpd/pureftpd.pdb &
   - mv ./tests/secrets.example.json ./tests/secrets.json
 
+env:
+  global:
+    - AWS_S3_REGION="us-east-1"
+    - AWS_S3_BUCKET="travisci"
+    - secure: "pcWXfQRZnMaP17NCQbi7S8LD9BK3+//UkmgrFxbl5MxmVhkdkpErEDewMoJJ\nmep01ltbwOojMyQYwlISFHwFfkDO4bKqp2g77fbNjW9dPVQ27p84dQSQQ2bn\n5UeePr2+jtOR8GgFcR59buYPQ4OvgLn3N7H7L3Mmto08x1QgtI4="
+    - secure: "Lhig23ge4bewtEI+JIRYIq4spx/clVMK9DBEube8C8knouTywIemRFddT5aG\nuBsJHyGvgTcxHIMhHtvR0jWWq+uRknRyVI2V2+spSFLiremdYaz3Ad7AExfw\ntYKQo+km5tXjwBo7h7IvFLf+TQPOQstp5rNiDJxbH2zp3HheEQY="
+    - secure: "Yn6NiCm40bUJ4L6XMoB78pE4ODnc5oggspJOI4Ihu87WwNxMs3TnImhGcRfe\n9eV3kIjaHbkL9+POz/XmV6JMQn3VISkwoqnp/9eqoqCJQacs4T+iSIzpJtSp\nHj82dG+QRacOyplZdenrONCJ/CXX2S5gBXEG4laraRtaFEHrL9s="
+    - secure: "Pnc5EUDUWblH4vyrG4p7XOTAJSooIb8DOOY/bwdCNph88S5gd6n4EcdHmBxR\nkCm2+HrlsDNcixWAOyW+JnJA6KE4OIDLUhhKxBUrszt6cgClyCjZHm1p9jVE\n0NiO9k2EwrginqvkQdzN9Z0QWfxIJKb2J0d6SkNKFJh5ozO9t1M="
+
 language: node_js
 
 node_js:
