@@ -3,8 +3,11 @@ var assert = require('assert')
   , path = require('path')
   , tests = {}
   , envoy = require('../../lib/envoy')
-  , secrets = require(path.join('../',process.env.SECRETS_FILE))
   , fixtures = require('../fixtures')
+  , config = require('../init')
+  , opts = config.opts
+  , uuid = config.uuid
+  , adapters = config.adapters
   /*
   * Sets up for a test
   */
@@ -47,30 +50,32 @@ var assert = require('assert')
       return function(client) {
         //console.log(" > Create");
         
-        client.put(file.key, new Buffer(file.data), function(err) {
+        var key = path.join(uuid,file.key);
+        
+        client.put(key, new Buffer(file.data), function(err) {
           
           assert.equal(err, null, err);
         
           //console.log(" > Read");
         
-          client.get(file.key, function(err, getData) {
+          client.get(key, function(err, getData) {
           
             assert.equal(err, null, err);
             assert.equal(getData, file.data);
             
             //console.log(" > Update");
         
-            client.put(file.key, new Buffer(file.data + " modified"), function(err) {
+            client.put(key, new Buffer(file.data + " modified"), function(err) {
               
               //console.log(" > Read");
               
-              client.get(file.key, function(err, getData) {
+              client.get(key, function(err, getData) {
                 assert.equal(err, null, err);
                 assert.equal(getData.toString(), file.data + " modified");
                 
                 //console.log(" > Delete");
                 
-                client.destroy(file.key, function(err, data) {
+                client.destroy(key, function(err, data) {
                   assert.equal(err, null, err);
                   
                   client.teardown(cb);
@@ -80,13 +85,6 @@ var assert = require('assert')
           });
         });
       };
-    }
-  , adapters = []
-  //Add to this array new adapters to test
-  , opts = {
-      memory: {}
-    , s3: secrets.s3
-    , ftp: secrets.ftp
     };
 
 _.each(opts, function (opts, adapter) {
