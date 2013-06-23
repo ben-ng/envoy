@@ -93,3 +93,6 @@ You'll need a `tests/secrets.json` file to run the tests with `jake test`. See `
     * Server should be configured to show .dotfiles
     * Server should not auto-rename uploaded files on conflict
     * We are tested against pure-ftpd and vsftpd
+ * S3
+    * Enable static website hosting yourself
+    * We'll set `x-amz-acl = public-read` on uploaded objects
