@@ -5,10 +5,6 @@ var assert = require('assert')
   , envoy = require('../../lib/envoy')
   , secrets = require(path.join('../',process.env.SECRETS_FILE))
   , fixtures = require('../fixtures')
-  , adapters = {
-      memory: {}
-    , ftp: secrets.ftp
-    }
   /*
   * Sets up for a test
   */
@@ -84,32 +80,43 @@ var assert = require('assert')
           });
         });
       };
+    }
+  , adapters = []
+  //Add to this array new adapters to test
+  , opts = {
+      memory: {}
+    , s3: secrets.s3
+    , ftp: secrets.ftp
     };
 
+_.each(opts, function (opts, adapter) {
+  adapters.push(adapter.toLowerCase());
+});
+
 //Shared tests for each adapter
-_.each(adapters, function(opts, adapterName) {
+_.each(adapters, function(adapterName) {
   tests[adapterName + " CRUD alphanumeric path"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileOne, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileOne, next));
   };
   
   tests[adapterName + " CRUD dashes in path"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileTwo, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileTwo, next));
   };
   
   tests[adapterName + " CRUD slashes in path"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileThree, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileThree, next));
   };
   
   tests[adapterName + " CRUD dotfile"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileFour, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileFour, next));
   };
   
   tests[adapterName + " CRUD dot in directory"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileFive, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileFive, next));
   };
   
   tests[adapterName + " CRUD dotfile in directory"] = function (next) {
-    setup(adapterName, opts, testCRUD(fixtures.fileSix, next));
+    setup(adapterName, opts[adapterName], testCRUD(fixtures.fileSix, next));
   };
 });
 

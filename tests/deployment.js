@@ -4,8 +4,8 @@ var assert = require('assert')
   , envoy = require('../lib/envoy.js')
   , secrets = require(process.env.SECRETS_FILE)
   , fixtures = require('./fixtures')
-  , adapters = []
   , undeployOpts
+  , adapters = []
   //Add to this array new adapters to test
   , opts = {
       memory: {}
