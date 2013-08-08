@@ -4,14 +4,13 @@ Fast, simple deployment of static sites.
 [![Build Status](https://travis-ci.org/ben-ng/envoy.png?branch=master)](https://travis-ci.org/ben-ng/envoy)
 
 ##Goals
- * **Correctness:** Deployed sites *have* to be perfect, every time.
- * **Speed:** Perform the bare minimum number of operations without compromising correctness.
- * **Simplicity:** One command should be all it takes to deploy to any service, and it should Just Work&trade;.
+ * **Correctness**
+ * **Speed**
+ * **Simplicity**
 
 ##Supported Services
  * S3
  * FTP
- * Github Pages *(Soon...)*
 
 ##High-Level Calls
 ```js
