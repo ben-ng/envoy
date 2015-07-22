@@ -13,14 +13,15 @@
   },
   "main": "./lib/envoy",
   "dependencies": {
-    "jsftp": "0.6.x"
-  , "knox": "0.8.x"
-  , "mime": "1.2.x"
-  , "async": "0.2.x"
-  , "crypto": "0.0.x"
-  , "underscore": "1.4.x"
-  , "wrench": "1.5.1"
-  , "jake": "0.5.x"
+    "async": "0.2.x",
+    "concat-stream": "^1.5.0",
+    "crypto": "0.0.x",
+    "jake": "0.5.x",
+    "jsftp": "0.6.x",
+    "knox": "0.8.x",
+    "mime": "1.2.x",
+    "underscore": "1.4.x",
+    "wrench": "1.5.1"
   },
   "scripts": {
     "test": "jake test"
